@@ -1,0 +1,46 @@
+.background {
+    min-height: calc(100vh - 20rem);
+    padding-top:4rem ;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.login__container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 2rem 0 2rem;
+}
+
+.login__itemContainer {
+    min-width: 12rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.login__itemDesc {
+    padding-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.login__itemList {
+    background-color: white;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 0.1rem solid rgba(var(--accent), 0.3);
+    /* box-shadow: 0 0 10px rgba(var(--accent), 0.3); */
+    outline: none;
+}
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

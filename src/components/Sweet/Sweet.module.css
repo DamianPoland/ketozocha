@@ -1,0 +1,11 @@
+.background {
+    background: var(--backgroundCustom);
+    min-height: calc(100vh - 12rem);
+    color: black;
+    padding: 4rem 0 0 0;
+}
+
+.itemsContainer {
+    max-width: 1000px;
+    margin: auto;
+}
