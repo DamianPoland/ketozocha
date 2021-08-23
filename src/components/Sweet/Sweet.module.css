@@ -1,8 +1,8 @@
 .background {
     background: var(--backgroundCustom);
-    min-height: calc(100vh - 12rem);
+    min-height: calc(100vh - 3rem);
     color: black;
-    padding: 4rem 0 0 0;
+    padding: 5rem 0 0 0;
 }
 
 .itemsContainer {

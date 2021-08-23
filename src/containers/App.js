@@ -8,6 +8,8 @@ import Home from '../components/Home/Home'
 import Recipe from '../components/Recipe/Recipe'
 import Sweet from '../components/Sweet/Sweet'
 import Salty from '../components/Salty/Salty'
+import Adaptation from '../components/Adaptation/Adaptation'
+import Base from '../components/Base/Base'
 import About from '../components/About/About'
 import Footer from '../components/Footer/Footer'
 import Login from '../components/Login/Login'
@@ -50,42 +52,67 @@ const App = () => {
   }, [])
 
 
-  // DB listeners
+  // DB states
+  const [dataFromDB, setDataFromDB] = useState([])
   const [dataFromDBHome, setDataFromDBHome] = useState([])
   const [dataFromDBSweet, setDataFromDBSweet] = useState([])
   const [dataFromDBSalty, setDataFromDBSalty] = useState([])
+  const [dataFromDBAdaptation, setDataFromDBAdaptation] = useState([])
+  const [dataFromDBBase, setDataFromDBBase] = useState([])
 
+
+  // DB listeners
   useEffect(() => {
     firestore.collection(mainColName).onSnapshot(
       resp => {
         let helpArray = []
         resp.forEach(doc => helpArray.push(doc.data())) // get all data from DB
-
+        helpArray.reverse() // from newest to oldest
+        setDataFromDB(helpArray)
         console.log('helpArray: ', helpArray)
-        setDataToHome(helpArray)
-        setDataToSweet(helpArray)
-        setDataToSalty(helpArray)
       },
       err => console.log(err.message))
-
   }, [])
+
+  // search from nav
+  const [searchNav, setSearchNav] = useState('')
+
+  // data from DB => filter send to components
+  useEffect(() => {
+
+    // check if title or desc1 includes search fraze
+    let data = dataFromDB
+    if (searchNav) {
+      data = data.filter(i => i.titleRecipe.toUpperCase().includes(searchNav.toUpperCase()) || i.descriptionRecipe1.toUpperCase().includes(searchNav.toUpperCase()))
+    }
+
+    // set result to components state
+    setDataToHome(data)
+    setDataToSweet(data)
+    setDataToSalty(data)
+    setDataToAdaptation(data)
+    setDataToBase(data)
+
+  }, [dataFromDB, searchNav])
 
   const setDataToHome = data => setDataFromDBHome(data)
   const setDataToSweet = data => setDataFromDBSweet(data.filter(i => i.categoryRecipe === 'Słodko'))
   const setDataToSalty = data => setDataFromDBSalty(data.filter(i => i.categoryRecipe === 'Słono'))
-
+  const setDataToAdaptation = data => setDataFromDBAdaptation(data.filter(i => i.categoryRecipe === 'Ketoadaptacja'))
+  const setDataToBase = data => setDataFromDBBase(data.filter(i => i.categoryRecipe === 'Baza'))
 
 
   return (
     <BrowserRouter>
-      <Nav path='/' />
+      <Route path='/' render={props => <Nav {...props} searchNav={searchNav} setSearchNav={setSearchNav} />} />
       <Switch>
         <Route path='/home' exact render={props => <Home {...props} isLogIn={isLogIn} dataFromDB={dataFromDBHome} />} />
         <Route path='/home/:key' render={props => <Recipe {...props} />} />
         <Route path='/sweet' exact render={props => <Sweet {...props} dataFromDB={dataFromDBSweet} />} />
         <Route path='/salty' exact render={props => <Salty {...props} dataFromDB={dataFromDBSalty} />} />
+        <Route path='/adaptation' exact render={props => <Adaptation {...props} dataFromDB={dataFromDBAdaptation} />} />
+        <Route path='/base' exact render={props => <Base {...props} dataFromDB={dataFromDBBase} />} />
         <Route path='/about' render={props => <About {...props} />} />
-
         <Route path='/login' render={props => <Login {...props} isLogIn={isLogIn} />} />
         <Route path='/privacy-policy' component={PrivacyPolicy} />
         <Redirect to='/home' />

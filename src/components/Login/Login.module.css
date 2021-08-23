@@ -1,6 +1,6 @@
 .background {
     min-height: calc(100vh - 20rem);
-    padding-top:4rem ;
+    padding-top:5rem ;
     padding: 1rem;
     display: flex;
     flex-direction: column;

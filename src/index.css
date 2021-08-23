@@ -6,7 +6,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', sans-serif, Arial, Helvetica, sans-serif;
+  line-height: 1.5;
 }
 
 :root {
@@ -16,6 +17,8 @@
 
   --dark: 30, 30, 30;
   /* #1e1e1e */
+
+  --bright: 210, 210, 210;
 
   --backgroundCustom: linear-gradient(90deg, rgb(240, 240, 240) 0%, rgb(221, 221, 221) 50%, rgb(240, 240, 240) 100%);
 
@@ -54,7 +57,6 @@ body::-webkit-scrollbar-thumb {
   letter-spacing: 1.2px;
   font-size: 1.5rem;
   color: rgb(var(--accent));
-  font-family: "Kalam", cursive;
   font-weight: 600;
 }
 

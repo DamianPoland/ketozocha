@@ -10,9 +10,9 @@ import PhotoEmpty from '../../assets/photoEmpty.png'
 const ListItemAd = ({ item, isLogIn, editAd }) => {
 
     return (
-        <section className={style.recipeItem} >
+        <Link to={`/home/${item.id}`} className={style.recipeItem} >
 
-            <div className={style.recipeItem__container}>
+            <section className={style.recipeItem__container}>
 
                 <p className={style.recipeItem__itemTitle}>{item.titleRecipe}</p>
 
@@ -27,7 +27,6 @@ const ListItemAd = ({ item, isLogIn, editAd }) => {
 
                     <div className={style.recipeItem__itemDescContainer}>
                         <p className={style.recipeItem__itemText}>{item.descriptionRecipe1}</p>
-                        <Link to={`/home/${item.id}`} className={style.recipeItem__link}>CZYTAJ WIĘCEJ...</Link>
                     </div>
 
                 </div>
@@ -35,8 +34,8 @@ const ListItemAd = ({ item, isLogIn, editAd }) => {
                 <div className={style.recipeItem__btn} >
                     {isLogIn && <button className='btn' onClick={(e) => editAd(e, item)}>Edytuj</button>}
                 </div>
-            </div>
-        </section>
+            </section>
+        </Link>
     )
 }
 

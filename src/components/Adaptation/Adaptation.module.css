@@ -1,15 +1,11 @@
 .background {
     background: var(--backgroundCustom);
     min-height: calc(100vh - 3rem);
+
     color: black;
     padding: 5rem 0 0 0;
 }
-.section__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+
 .itemsContainer {
     max-width: 1000px;
     margin: auto;

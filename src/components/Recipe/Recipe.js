@@ -63,18 +63,18 @@ const Recipe = props => {
             {/* AlertSmall */}
             {isAlertSmallShow && <AlertSmall alertIcon={isAlertSmallShow.alertIcon} description={isAlertSmallShow.description} animationTime={isAlertSmallShow.animationTime} borderColor={isAlertSmallShow.borderColor} hide={() => setIsAlertSmallShow(false)} />}
 
-            {oneRecipe && oneRecipe.imageURL[0] &&
-                <figure className={style.recipe__figureAbsolute} >
-                    <img className={style.recipe__img} src={oneRecipe.imageURL[0]} alt='przepis KetoZocha.pl' />
-                </figure>}
-
             {oneRecipe &&
                 <section className={style.recipe}>
                     <div className={style.recipe__container}>
 
-                        <div className={style.recipe__btn}>
-                            <button className="btn" onClick={() => window.history.back()}>{"< Wróć"}</button>
+                        <div className={style.recipe__btnContainer}>
+                            <button className={style.recipe__btn} onClick={() => window.history.back()}>{"< Wróć"}</button>
                         </div>
+
+                        {oneRecipe.imageURL[0] &&
+                            <figure className={style.recipe__figure} >
+                                <img className={style.recipe__img} src={oneRecipe.imageURL[0]} alt='przepis KetoZocha.pl' />
+                            </figure>}
 
                         <h1 className={style.recipe__title}>{oneRecipe.titleRecipe}</h1>
 
