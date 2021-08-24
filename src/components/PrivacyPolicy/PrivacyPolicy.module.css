@@ -33,7 +33,7 @@
 .privacyContainer h2 {
     font-size: 1.5rem;
     padding: 0 2rem;
-    color: rgb(var(--accent));
+    color: rgb(var(--accentDark));
 }
 
 .font {

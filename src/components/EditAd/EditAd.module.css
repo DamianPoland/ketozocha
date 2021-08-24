@@ -39,6 +39,14 @@
     padding: 2rem;
 }
 
+.ad__itemLabelCheckBox {
+    font-size: 1rem;
+}
+
+.ad__itemCheckBox {
+    margin-right: 0.5rem;
+}
+
 .ad__itemDesc {
     padding-bottom: 0.5rem;
     font-size: 1rem;
@@ -48,8 +56,7 @@
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
-    border: 0.1rem solid rgba(var(--accent), 0.3);
-    /* box-shadow: 0 0 10px rgba(var(--accent), 0.3); */
+    border: 0.1rem solid rgba(var(--accentDark), 0.3);
     outline: none;
 }
 .ad__itemLabel {
@@ -103,9 +110,9 @@
     padding: 0.5rem 2rem;
     font-size: 1rem;
     outline: none;
-    border: 0.1rem solid rgba(var(--accent), 1);
+    border: 0.1rem solid rgba(var(--accentDark), 1);
     background: white;
-    box-shadow: 0 0 10px rgba(var(--accent), 0.5);
+    box-shadow: 0 0 10px rgba(var(--accentDark), 0.5);
     cursor: pointer;
 }
 
@@ -114,11 +121,11 @@
 }
 
 .btn:hover {
-    box-shadow: 0 0 20px rgba(var(--accent), 0.5);
+    box-shadow: 0 0 20px rgba(var(--accentDark), 0.5);
 }
 
 .btn:active {
     box-shadow: none;
-    background: rgba(var(--accent), 1);
+    background: rgba(var(--accentDark), 1);
     color: white;
 }

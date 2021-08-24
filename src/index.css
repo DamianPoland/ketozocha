@@ -12,13 +12,18 @@
 
 :root {
   /* colors */
-  --accent: 206, 183, 139;
-  /* #ceb78b*/
+
+  --accent: 159, 240, 54;
+  /* #9ff036 */
+
+  --accentDark: 53, 98, 17;
+  /* #356211 */
 
   --dark: 30, 30, 30;
   /* #1e1e1e */
 
-  --bright: 210, 210, 210;
+  --bright: 245, 245, 245;
+  /* #f5f5f5 */
 
   --backgroundCustom: linear-gradient(90deg, rgb(240, 240, 240) 0%, rgb(221, 221, 221) 50%, rgb(240, 240, 240) 100%);
 
@@ -45,7 +50,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: rgba(var(--accent), 0.6);
+  background: rgba(var(--accentDark), 0.6);
   border-radius: 999px;
 }
 
@@ -56,13 +61,13 @@ body::-webkit-scrollbar-thumb {
 .text {
   letter-spacing: 1.2px;
   font-size: 1.5rem;
-  color: rgb(var(--accent));
+  color: rgb(var(--accentDark));
   font-weight: 600;
 }
 
 .btn {
   background: transparent;
-  border: solid 0.2rem rgba(var(--accent), 0.6);
+  border: solid 0.2rem rgba(var(--accentDark), 0.6);
   padding: 0.5rem 2rem;
   display: inline-block;
   font-size: 1rem;
@@ -76,11 +81,11 @@ body::-webkit-scrollbar-thumb {
 }
 
 .btn:hover {
-  box-shadow: 0 0 20px rgba(var(--accent), 0.5);
+  box-shadow: 0 0 20px rgba(var(--accentDark), 0.5);
 }
 
 .btn:active {
-  background: rgba(var(--accent), 0.6);
+  background: rgba(var(--accentDark), 0.6);
 }
 
 .text__white {

@@ -6,6 +6,9 @@ import style from './Home.module.css'
 import EditAd from '../EditAd/EditAd'
 import ListItemAd from '../ListItemAd/ListItemAd'
 
+// photos
+import home__main from '../../assets/home__main.jpg'
+
 const Home = ({ isLogIn, dataFromDB }) => {
 
 
@@ -32,14 +35,14 @@ const Home = ({ isLogIn, dataFromDB }) => {
             {!isEditAdVisible ?
                 <div className={style.section__container}>
 
-                    {isLogIn && <button className='btn' onClick={() => setIsEditAdVisible(true)}>Dodaj ogłoszenie</button>}
+                    {isLogIn && <div className={style.home__btnAbsolute}>
+                        <button className='btn' onClick={() => setIsEditAdVisible(true)}>Dodaj ogłoszenie</button>
+                    </div>}
 
                     {/* HEADER */}
-                    <section>
-
-                        JAKIŚ HEADER ???
-
-                    </section>
+                    <figure className={style.home__headerFigure}>
+                        <img className={style.home__headerImg} src={home__main} alt="KetoZocha.pl" />
+                    </figure>
 
                     {/* ALL RECIPIES */}
                     <section className={style.itemsContainer}>
@@ -55,7 +58,7 @@ const Home = ({ isLogIn, dataFromDB }) => {
                                 )}
                             </div>
                             : <div>
-                                Loading...
+                                EMPTY
                             </div>
                         }
                     </section>

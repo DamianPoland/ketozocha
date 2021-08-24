@@ -22,7 +22,7 @@ const ListItemAd = ({ item, isLogIn, editAd }) => {
                 <div className={style.recipeItem__itemContainer}>
 
                     <figure className={style.recipeItem__itemFigure}>
-                        <img className={style.recipeItem__itemImg} src={item.smallImageURL || PhotoEmpty} onError={(e) => { e.target.onerror = null; e.target.src = PhotoEmpty }} alt="main nieruchomość" />
+                        <img className={style.recipeItem__itemImg} src={item.smallImageURL || PhotoEmpty} onError={(e) => { e.target.onerror = null; e.target.src = PhotoEmpty }} alt="main KetoZocha.pl" />
                     </figure>
 
                     <div className={style.recipeItem__itemDescContainer}>

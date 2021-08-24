@@ -42,12 +42,10 @@
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
+    color: rgb(var(--accent));
+    font-family: 'Caveat', 'cursive';
 }
 
-.headerDesc1 {
-    color: rgb(var(--accent));
-    font-family: 'Caveat', cursive;
-}
 
 .textWhite {
     color: white;
@@ -93,7 +91,7 @@
 /* BOTTOM */
 
 .backgroundBottom {
-    background: rgba(var(--bright), 1);
+    background: rgba(var(--accent), 1);
 }
 
 .containerBottom {

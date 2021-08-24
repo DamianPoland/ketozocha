@@ -1,6 +1,5 @@
 * {
-    /* add color in index.css eg: --accent: 0, 200, 0;*/
-    --colorAlertPrivacy: var(--accent);
+    --colorAlertPrivacy: var(--accentDark);
 }
 
 .container {

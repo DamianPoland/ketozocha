@@ -34,8 +34,7 @@
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
-    border: 0.1rem solid rgba(var(--accent), 0.3);
-    /* box-shadow: 0 0 10px rgba(var(--accent), 0.3); */
+    border: 0.1rem solid rgba(var(--accentDark), 0.3);
     outline: none;
 }
 

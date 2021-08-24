@@ -103,7 +103,12 @@ const Recipe = props => {
 
                         {oneRecipe.descriptionRecipe4 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe4}</p>}
 
-
+                        {/* linki */}
+                        {oneRecipe.links &&
+                            <div>
+                                <p className={style.recipe__textLink}>Przydatne linki:</p>
+                                {oneRecipe.links.map((i, index) => <a className={style.recipe__link} key={index} href={i.href}>{i.desc}</a>)}
+                            </div>}
                     </div>
                 </section>
             }

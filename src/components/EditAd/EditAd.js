@@ -20,6 +20,9 @@ import AlertSmall from "../../UI/AlertSmall/AlertSmall"
 
 const EditAd = ({ setIsEditAdVisible, editData }) => {
 
+    useEffect(() => {
+
+    }, [])
 
     // generator [yyyy-mm-dd date1970]
     const idGenerator = () => `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()} ${new Date().getTime()}`
@@ -30,9 +33,19 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
     // id
     const [id, setId] = useState(idGenerator())
 
-    // CATEGORY & STATUS ----------------------------------------------------------------------------------------------------
+    // CATEGORY ----------------------------------------------------------------------------------------------------
 
-    const [categoryRecipe, setCategoryRecipe] = useState(categoryRecipeArray[0])
+    const [categoryRecipe, setCategoryRecipe] = useState(categoryRecipeArray.map(i => ({ name: i, isChecked: false })))
+
+    const setCategoryRecipeHandler = e => {
+        setCategoryRecipe(prevState => {
+
+            const currentArray = [...prevState]
+            const currentIndex = currentArray.findIndex(i => i.name === e.target.value)
+            currentArray[currentIndex] = { ...currentArray[currentIndex], isChecked: e.target.checked }
+            return currentArray
+        })
+    }
 
 
     // PHOTOS----------------------------------------------------------------------------------------------------------------
@@ -229,6 +242,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
     const [descriptionRecipe2, setDescriptionRecipe2] = useState('')
     const [descriptionRecipe3, setDescriptionRecipe3] = useState('')
     const [descriptionRecipe4, setDescriptionRecipe4] = useState('')
+    const [links, setLinks] = useState(Array.from(Array(10)).map(i => ({ desc: '', href: '' }))) // array of objects with empty values
 
 
     // IF AD IS EDITING ----------------------------------------------------------------------------------------------------------------
@@ -257,6 +271,9 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
         setDescriptionRecipe2(editData.descriptionRecipe2)
         setDescriptionRecipe3(editData.descriptionRecipe3)
         setDescriptionRecipe4(editData.descriptionRecipe4)
+
+        //LINKS
+        setLinks(editData.links)
     }
 
 
@@ -280,6 +297,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
             descriptionRecipe2,
             descriptionRecipe3,
             descriptionRecipe4,
+            links,
         }
     }
 
@@ -328,6 +346,14 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
 
 
 
+    const setLinksHandler = (type, index, value) => {
+        setLinks(prevState => {
+            const prev = [...prevState]
+            prev[index] = { ...prev[index], [type]: value }
+            return prev
+        })
+    }
+
 
 
     return (
@@ -339,16 +365,26 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
 
             <div className={style.ad__section}>
 
-                {/* category and status */}
+
+                {/* category */}
                 <div className={style.ad__container}>
 
                     <div className={style.ad__itemContainer}>
                         <p className={style.ad__itemDesc}>Kategoria:</p>
-                        <select className={style.ad__itemList} onChange={e => setCategoryRecipe(e.target.value)} value={categoryRecipe}>
-                            {categoryRecipeArray.map(item => <option key={item} value={item}>{item}</option>)}
-                        </select>
-                    </div>
+                        {categoryRecipe.map(item =>
 
+                            <label className={style.ad__itemLabelCheckBox}>
+                                <input
+                                    key={item.name}
+                                    className={style.ad__itemCheckBox}
+                                    value={item.name}
+                                    checked={item.isChecked}
+                                    onChange={e => setCategoryRecipeHandler(e)}
+                                    type='checkbox' />
+                                {item.name}
+                            </label>
+                        )}
+                    </div>
                 </div>
 
 
@@ -405,6 +441,18 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
                     <label className={style.ad__itemDesc}>Opis 4:</label>
                     <textarea onChange={event => setDescriptionRecipe4(event.target.value)} value={descriptionRecipe4} className={style.ad__itemList} type='textarea' rows='8' placeholder="Opis 4" />
                 </div>
+
+                {/* links */}
+                {links.map((i, index) => {
+                    return (
+                        <div key={index} className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
+                            <label className={style.ad__itemDesc}>Link: {index + 1}</label>
+                            <input onChange={event => setLinksHandler('desc', index, event.target.value)} value={links[index].desc} className={style.ad__itemList} placeholder={`Opis linka ${index + 1} np: przepisy KetoZochy`} />
+                            <input onChange={event => setLinksHandler('href', index, event.target.value)} value={links[index].href} className={style.ad__itemList} placeholder={`Link ${index + 1} np: https://ketozocha.pl`} />
+                        </div>
+                    )
+                })}
+
 
                 {/* buttons */}
                 <div className={style.btnContainer}>

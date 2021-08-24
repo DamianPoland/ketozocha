@@ -3,13 +3,34 @@
     min-height: calc(100vh - 3rem);
     color: black;
     padding: 5rem 0 0 0;
+    position: relative;
+}
+
+.home__btnAbsolute {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
 }
 .section__container {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
+.home__headerFigure {
+    max-width: 1600px;
+    width: 100%;
+    margin: auto;
+}
+
+.home__headerImg {
+    width: 100%;
+    object-fit: contain;
+}
+
 .itemsContainer {
     max-width: 1000px;
     margin: auto;

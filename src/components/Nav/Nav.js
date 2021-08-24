@@ -25,7 +25,7 @@ const Nav = ({ searchNav, setSearchNav }) => {
                 <div className={style.containerTop}>
                     <Link to='/home' className={style.header}>
                         <img className={style.headerImg} src={logo} alt='logo' />
-                        <p className={style.headerDesc}>K<span className={style.headerDesc1}>eto</span>Z<span className={style.headerDesc1}>ocha</span></p>
+                        <p className={style.headerDesc}>KetoZocha</p>
                     </Link>
                     <ul onClick={() => setIsOpenMobileMenu(false)} className={`${style.list} ${styleMobileMenu}`}>
                         <li className={style.listItem}><NavLink to='/home' activeClassName={style.activeLink} className={style.listItemAnchor}>Wszystkie wpisy</NavLink></li>
