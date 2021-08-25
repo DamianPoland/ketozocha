@@ -1,1 +1,1 @@
-export const categoryRecipeArray = ['Wszystkie', 'Słono', "Słodko", "Ketoadaptacja", "Baza"]
+export const categoryRecipeArray = ['Słono', "Słodko", "Ketoadaptacja", "Baza"]

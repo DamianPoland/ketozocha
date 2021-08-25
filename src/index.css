@@ -25,7 +25,7 @@
   --bright: 245, 245, 245;
   /* #f5f5f5 */
 
-  --backgroundCustom: linear-gradient(90deg, rgb(240, 240, 240) 0%, rgb(221, 221, 221) 50%, rgb(240, 240, 240) 100%);
+  --backgroundCustom: linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(221, 221, 221) 50%, rgb(245, 245, 245) 100%);
 
 }
 
@@ -37,7 +37,7 @@ body {
 
   /* scrollbar ONLY for mozilla, scrollbar-width - "auto" or "thin"  */
   scrollbar-width: thin;
-  scrollbar-color: green black;
+  scrollbar-color: rgba(var(--accent)) rgba(var(--dark));
 }
 
 /* custom scroll bar in body (mobile not work) */
@@ -46,11 +46,11 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: black;
+  background: rgba(var(--dark));
 }
 
 body::-webkit-scrollbar-thumb {
-  background: rgba(var(--accentDark), 0.6);
+  background: rgba(var(--accent), 1);
   border-radius: 999px;
 }
 

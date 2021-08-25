@@ -95,7 +95,7 @@ const App = () => {
 
   }, [dataFromDB, searchNav])
 
-  const setDataToHome = data => setDataFromDBHome(data.filter(i => i.categoryRecipe.find(j => j.name === 'Wszystkie').isChecked))
+  const setDataToHome = data => setDataFromDBHome(data)
   const setDataToSweet = data => setDataFromDBSweet(data.filter(i => i.categoryRecipe.find(j => j.name === 'Słodko').isChecked))
   const setDataToSalty = data => setDataFromDBSalty(data.filter(i => i.categoryRecipe.find(j => j.name === 'Słono').isChecked))
   const setDataToAdaptation = data => setDataFromDBAdaptation(data.filter(i => i.categoryRecipe.find(j => j.name === 'Ketoadaptacja').isChecked))

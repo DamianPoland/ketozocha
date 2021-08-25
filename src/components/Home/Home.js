@@ -57,9 +57,7 @@ const Home = ({ isLogIn, dataFromDB }) => {
                                     />
                                 )}
                             </div>
-                            : <div>
-                                EMPTY
-                            </div>
+                            : <div></div>
                         }
                     </section>
                 </div>

@@ -29,6 +29,7 @@
 .recipeItem__itemDate {
     font-size: 1rem;
     padding: 0 0 2rem 0;
+    color: rgb(var(--dark));
 }
 
 .recipeItem__itemContainer {

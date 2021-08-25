@@ -242,7 +242,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
     const [descriptionRecipe2, setDescriptionRecipe2] = useState('')
     const [descriptionRecipe3, setDescriptionRecipe3] = useState('')
     const [descriptionRecipe4, setDescriptionRecipe4] = useState('')
-    const [links, setLinks] = useState(Array.from(Array(10)).map(i => ({ desc: '', href: '' }))) // array of objects with empty values
+    const [links, setLinks] = useState(Array.from(Array(10)).map(i => ({ desc: '', text: '', href: '' }))) // array of objects with empty values
 
 
     // IF AD IS EDITING ----------------------------------------------------------------------------------------------------------------
@@ -447,7 +447,8 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
                     return (
                         <div key={index} className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
                             <label className={style.ad__itemDesc}>Link: {index + 1}</label>
-                            <input onChange={event => setLinksHandler('desc', index, event.target.value)} value={links[index].desc} className={style.ad__itemList} placeholder={`Opis linka ${index + 1} np: przepisy KetoZochy`} />
+                            <input onChange={event => setLinksHandler('desc', index, event.target.value)} value={links[index].desc} className={style.ad__itemList} placeholder={`Opis linka ${index + 1} np: Opis przepisów KetoZochy`} />
+                            <input onChange={event => setLinksHandler('text', index, event.target.value)} value={links[index].text} className={style.ad__itemList} placeholder={`Tekst linka ${index + 1} np: przepisy KetoZochy`} />
                             <input onChange={event => setLinksHandler('href', index, event.target.value)} value={links[index].href} className={style.ad__itemList} placeholder={`Link ${index + 1} np: https://ketozocha.pl`} />
                         </div>
                     )

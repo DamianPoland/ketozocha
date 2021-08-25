@@ -39,7 +39,6 @@ const Recipe = props => {
         firestore.collection(mainColName).doc(props.match.params.key).get()
             .then(resp => {
                 setOneRecipe(resp.data())
-                console.log('resp.data(): ', resp.data())
             })
             .catch(err => {
                 console.log('listener err', err)
@@ -104,10 +103,17 @@ const Recipe = props => {
                         {oneRecipe.descriptionRecipe4 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe4}</p>}
 
                         {/* linki */}
-                        {oneRecipe.links &&
+                        {oneRecipe.links[0].href &&
                             <div>
                                 <p className={style.recipe__textLink}>Przydatne linki:</p>
-                                {oneRecipe.links.map((i, index) => <a className={style.recipe__link} key={index} href={i.href}>{i.desc}</a>)}
+                                {oneRecipe.links.map((i, index) =>
+                                    i.href
+                                        ? <div key={index}>
+                                            <p className={style.recipe__descLink}>{i.desc}</p>
+                                            <a className={style.recipe__link} key={index} href={i.href}>{i.text}</a>
+                                        </div>
+                                        : null
+                                )}
                             </div>}
                     </div>
                 </section>

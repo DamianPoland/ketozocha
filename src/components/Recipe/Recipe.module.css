@@ -1,7 +1,7 @@
 .background {
     margin-top: 5rem;
     background: var(--backgroundCustom);
-    min-height: calc(100vh - 15rem);
+    min-height: calc(100vh - 11rem);
     position: relative;
 }
 
@@ -62,11 +62,19 @@
     font-size: 1rem;
     padding: 0 0 1rem 0;
     white-space: pre-line;
+    color: rgb(var(--accentDark));
+    font-weight: bold;
+
 }
 .recipe__link {
     display: block;
     font-size: 1rem;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.recipe__descLink {
+    font-size: 1rem;
+    padding: 0.5rem 0 0 0;
 }
 
 

@@ -20,7 +20,7 @@ const Sweet = ({ dataFromDB }) => {
                             />
                         )}
                     </div>
-                    : <div>EMPTY</div>
+                    : <div></div>
                 }
             </section>
         </main >
