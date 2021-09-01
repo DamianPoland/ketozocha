@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import style from './Nav.module.css'
 
 // images
-import logo from '../../assets/logo192.png'
+// import logo from '../../assets/logo192.png'
 import logoText from '../../assets/logoText.png'
 
 
@@ -16,6 +16,7 @@ import { ReactComponent as Search } from '../../assets/icons/search.svg'
 
 const Nav = ({ searchNav, setSearchNav, history }) => {
 
+
     // open & close mobile menu
     const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
     let styleMobileMenu = isOpenMobileMenu ? style.listOpen : '' //menu list close/open
@@ -27,7 +28,8 @@ const Nav = ({ searchNav, setSearchNav, history }) => {
     const [logoPossitionClass, setLogoPossitionClass] = useState(true)
     useEffect(() => {
 
-        const homeLocation = window.location.toString().includes("home")
+        const homeLocationArray = window.location.toString().split('/')
+        const homeLocation = homeLocationArray[homeLocationArray.length - 1].includes("home")
 
         homeLocation ? setLogoPossitionClass(true) : setLogoPossitionClass(prevState => false)
 

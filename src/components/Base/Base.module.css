@@ -2,7 +2,7 @@
     background: var(--backgroundCustom);
     min-height: calc(100vh - 3rem);
     color: black;
-    padding: 5rem 0 0 0;
+    padding: 5rem 0 0.01rem 0;
 }
 
 .itemsContainer {

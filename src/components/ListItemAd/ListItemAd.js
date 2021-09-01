@@ -26,7 +26,8 @@ const ListItemAd = ({ item, isLogIn, editAd }) => {
 
         })
         setSortIcon(helpArray)
-        console.log("item :", stringArray);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

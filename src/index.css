@@ -27,6 +27,8 @@
 
   --backgroundCustom: linear-gradient(90deg, rgb(245, 245, 245) 0%, rgb(221, 221, 221) 50%, rgb(245, 245, 245) 100%);
 
+  --backgroundOfItem: linear-gradient(to right bottom, rgba(255, 255, 255, 1), rgba(53, 98, 17, 0.2));
+
 }
 
 html,

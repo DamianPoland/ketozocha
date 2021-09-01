@@ -58,7 +58,6 @@ const Home = ({ isLogIn, dataFromDB }) => {
     useEffect(() => !isEditAdVisible && setEditData(false), [isEditAdVisible]) // when close editAd then clear setEditData
 
 
-
     return (
         <main className={style.background}>
 
