@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import style from './Home.module.css'
 
 
@@ -8,8 +8,9 @@ import ListItemAd from '../ListItemAd/ListItemAd'
 
 // photos
 import home__main from '../../assets/home__main.jpg'
+import logo512 from '../../assets/logo512.png'
 
-const Home = ({ isLogIn, dataFromDB }) => {
+const Home = ({ isLogIn, dataFromDB, searchNav }) => {
 
 
     const [isEditAdVisible, setIsEditAdVisible] = useState(false)
@@ -19,33 +20,31 @@ const Home = ({ isLogIn, dataFromDB }) => {
     useEffect(() => { window.scrollTo(0, 0) }, [])
 
 
-    // onScroll to parallax for section start
+    // avocado with eyes
     useEffect(() => {
-
-        //get container with text
-        const startContainer = document.querySelector("#start__contaner")
-
-        if (!startContainer) { return }
-
-        // event listener funcion
-        const startScrool = () => {
-
-            // get scrool position
-            let scrollPosition = window.pageYOffset
-
-            // stop when > 700 => startContainer not visible
-            if (scrollPosition > 700) { return }
-
-            // console.log(window.pageYOffset);
-            let scale = (1 - scrollPosition * 0.0015)
-            startContainer.style.transform = `translateY(${scrollPosition * -0.5}px) scale(${scale > 0 ? scale : 0})`
+        const eyeball = e => {
+            var eye = document.querySelectorAll('.eye')
+            eye.forEach(eye => {
+                let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2)
+                let y = (eye.getBoundingClientRect().top) + window.scrollY + (eye.clientHeight / 2)
+                let radian = Math.atan2(e.pageX - x, e.pageY - y)
+                let rot = (radian * (180 / Math.PI) * -1) + 0
+                eye.style.transform = "rotate(" + rot + "deg)"
+            })
         }
 
-        // add/remove event listener
-        window.addEventListener('scroll', startScrool)
-
-        return () => window.removeEventListener('scroll', startScrool)
+        // add/remove event listener for width more than 1500px
+        (window.innerWidth >= 1500) && window.addEventListener('mousemove', eyeball)
+        return () => window.removeEventListener('mousemove', eyeball)
     }, [])
+
+
+    // scroll to items when start search in nav
+    const itemsContainer = useRef(null)
+    useEffect(() => {
+        searchNav && dataFromDB.length && window.scrollTo(0, itemsContainer.current.offsetTop - 64) // got to first item
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchNav])
 
 
     // call from listItemAd when Ad is edit
@@ -68,13 +67,23 @@ const Home = ({ isLogIn, dataFromDB }) => {
                         <button className='btn' onClick={() => setIsEditAdVisible(true)}>Dodaj ogłoszenie</button>
                     </div>}
 
+                    {/* Avocado and eyes */}
+                    {(window.innerWidth >= 1500) &&
+                        <figure id='logo__img' className={style.home__avocadoFigure}>
+                            <img className={style.home__avocadoImg} src={logo512} alt="Avocado and eyes" />
+                            <div className={style.home__avocadoEyes}>
+                                <div className={`${style.home__avocadoEye} eye`}></div>
+                                <div className={`${style.home__avocadoEye} eye`}></div>
+                            </div>
+                        </figure>}
+
                     {/* HEADER */}
                     <figure id='logo__img' className={style.home__headerFigure}>
                         <img className={style.home__headerImg} src={home__main} alt="KetoZocha.pl" />
                     </figure>
 
                     {/* ALL RECIPIES */}
-                    <section className={style.itemsContainer}>
+                    <section ref={itemsContainer} className={style.itemsContainer}>
                         {dataFromDB.length !== 0
                             ? <div>
                                 {dataFromDB.map(item =>

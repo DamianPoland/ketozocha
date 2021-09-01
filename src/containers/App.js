@@ -105,7 +105,7 @@ const App = () => {
     <BrowserRouter>
       <Route path='/' render={props => <Nav {...props} searchNav={searchNav} setSearchNav={setSearchNav} />} />
       <Switch>
-        <Route path='/home' exact render={props => <Home {...props} isLogIn={isLogIn} dataFromDB={dataFromDBHome} />} />
+        <Route path='/home' exact render={props => <Home {...props} isLogIn={isLogIn} dataFromDB={dataFromDBHome} searchNav={searchNav} />} />
         <Route path='/home/:key' render={props => <Recipe {...props} />} />
         <Route path='/sweet' exact render={props => <Sweet {...props} dataFromDB={dataFromDBSweet} />} />
         <Route path='/salty' exact render={props => <Salty {...props} dataFromDB={dataFromDBSalty} />} />
