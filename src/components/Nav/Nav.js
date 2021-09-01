@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import style from './Nav.module.css'
+
+// images
 import logo from '../../assets/logo192.png'
+import logoText from '../../assets/logoText.png'
 
 
 //svg
@@ -11,7 +14,7 @@ import { ReactComponent as Instagram } from '../../assets/icons/instagram.svg'
 import { ReactComponent as Search } from '../../assets/icons/search.svg'
 
 
-const Nav = ({ searchNav, setSearchNav }) => {
+const Nav = ({ searchNav, setSearchNav, history }) => {
 
     // open & close mobile menu
     const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
@@ -19,13 +22,38 @@ const Nav = ({ searchNav, setSearchNav }) => {
     let styleMobileButtonBurger = isOpenMobileMenu ? style.burgerOpen : '' //button burger close/open
 
 
+
+    // onScroll to parallax for section start
+    const [logoPossitionClass, setLogoPossitionClass] = useState(true)
+    useEffect(() => {
+
+        const homeLocation = window.location.toString().includes("home")
+
+        homeLocation ? setLogoPossitionClass(true) : setLogoPossitionClass(prevState => false)
+
+        //get nav container
+        const nav = document.getElementById("nav")
+        let navWidth = nav?.clientWidth
+        navWidth = navWidth > 600 ? navWidth / 7 : navWidth / 9
+
+        // event listener funcion
+        const startScrool = () => window.pageYOffset > navWidth ? setLogoPossitionClass(false) : setLogoPossitionClass(true)
+
+
+        // add/remove event listener
+        homeLocation && window.addEventListener('scroll', startScrool)
+        return () => window.removeEventListener('scroll', startScrool)
+
+    }, [history.location.pathname])
+
+
     return (
-        <nav className={style.nav}>
+        <nav id='nav' className={style.nav}>
             <div className={style.backgroundTop}>
                 <div className={style.containerTop}>
                     <Link to='/home' className={style.header}>
-                        <img className={style.headerImg} src={logo} alt='logo' />
-                        <p className={style.headerDesc}>KetoZocha</p>
+                        <img className={`${style.headerImg} ${logoPossitionClass ? style.headerImgTransform : null}`} src={logoText} alt='logo' />
+                        {/* <p className={style.headerDesc}>KetoZocha</p> */}
                     </Link>
                     <ul onClick={() => setIsOpenMobileMenu(false)} className={`${style.list} ${styleMobileMenu}`}>
                         <li className={style.listItem}><NavLink to='/home' activeClassName={style.activeLink} className={style.listItemAnchor}>Wszystkie wpisy</NavLink></li>
@@ -38,6 +66,7 @@ const Nav = ({ searchNav, setSearchNav }) => {
                     <div onClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)} className={`${style.burgerMenu} ${styleMobileButtonBurger}`}>
                         <div className={style.burgerBtn}></div>
                     </div>
+                    {isOpenMobileMenu && <div className={style.navBackgroundMobile} onClick={() => setIsOpenMobileMenu(false)}></div>}
                 </div>
             </div>
 

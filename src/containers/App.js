@@ -69,7 +69,6 @@ const App = () => {
         resp.forEach(doc => helpArray.push(doc.data())) // get all data from DB
         helpArray.reverse() // from newest to oldest
         setDataFromDB(helpArray)
-        console.log('helpArray: ', helpArray)
       },
       err => console.log(err.message))
   }, [])

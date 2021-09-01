@@ -18,6 +18,36 @@ const Home = ({ isLogIn, dataFromDB }) => {
     // scroll to top when componene render
     useEffect(() => { window.scrollTo(0, 0) }, [])
 
+
+    // onScroll to parallax for section start
+    useEffect(() => {
+
+        //get container with text
+        const startContainer = document.querySelector("#start__contaner")
+
+        if (!startContainer) { return }
+
+        // event listener funcion
+        const startScrool = () => {
+
+            // get scrool position
+            let scrollPosition = window.pageYOffset
+
+            // stop when > 700 => startContainer not visible
+            if (scrollPosition > 700) { return }
+
+            // console.log(window.pageYOffset);
+            let scale = (1 - scrollPosition * 0.0015)
+            startContainer.style.transform = `translateY(${scrollPosition * -0.5}px) scale(${scale > 0 ? scale : 0})`
+        }
+
+        // add/remove event listener
+        window.addEventListener('scroll', startScrool)
+
+        return () => window.removeEventListener('scroll', startScrool)
+    }, [])
+
+
     // call from listItemAd when Ad is edit
     const [editData, setEditData] = useState(false)
     const editAd = (e, item) => {
@@ -40,7 +70,7 @@ const Home = ({ isLogIn, dataFromDB }) => {
                     </div>}
 
                     {/* HEADER */}
-                    <figure className={style.home__headerFigure}>
+                    <figure id='logo__img' className={style.home__headerFigure}>
                         <img className={style.home__headerImg} src={home__main} alt="KetoZocha.pl" />
                     </figure>
 

@@ -39,6 +39,21 @@
     padding: 2rem;
 }
 
+.ad__itemCloseBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-70%, 30%);
+    background: white;
+    padding: 0.2rem;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.ad__itemCloseBtn:active {
+    background: gray;
+}
+
 .ad__itemLabelCheckBox {
     font-size: 1rem;
 }
@@ -60,8 +75,8 @@
     outline: none;
 }
 .ad__itemLabel {
-    height: 9rem;
-    width: 12rem;
+    height: 12rem;
+    width: 16rem;
     padding: 0 !important;
     display: flex;
     justify-content: center;

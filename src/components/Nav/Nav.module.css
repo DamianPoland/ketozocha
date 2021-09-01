@@ -33,8 +33,40 @@
 
 .headerImg {
     height: 3rem;
-    width: 3rem;
-    padding: .5rem
+    width: 6rem;
+    padding: .5rem;
+    transition: 0.8s ease-in-out;
+}
+
+.headerImgTransform {
+    height: 4rem;
+    width: 8rem;
+    transform: translate(50vw, 25vw);
+}
+
+@media (min-width:600px) {
+    .headerImgTransform {
+        height: 6rem;
+        width: 12rem;
+        transform: translate(50vw, 18vw);
+    }
+}
+
+@media (min-width:800px) {
+    .headerImgTransform {
+        height: 9rem;
+        width: 18rem;
+        transform: translate(50vw, 15vw);
+    }
+}
+
+
+@media (min-width:1200px) {
+    .headerImgTransform {
+        height: 12rem;
+        width: 24rem;
+        transform: translate(50vw, 12vw);
+    }
 }
 
 .headerDesc {
@@ -86,6 +118,15 @@
 
 .activeLink {
     color: rgb(var(--accent));
+}
+
+.navBackgroundMobile {
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 3rem);
+    z-index: 5;
 }
 
 /* BOTTOM */
@@ -243,7 +284,7 @@
     }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1150px) {
 
     .burgerMenu {
         display: none;

@@ -70,12 +70,12 @@ const Recipe = props => {
                             <button className={style.recipe__btn} onClick={() => window.history.back()}>{"< Wróć"}</button>
                         </div>
 
+                        <h1 className={style.recipe__title}>{oneRecipe.titleRecipe}</h1>
+
                         {oneRecipe.imageURL[0] &&
                             <figure className={style.recipe__figure} >
                                 <img className={style.recipe__img} src={oneRecipe.imageURL[0]} alt='przepis KetoZocha.pl' />
                             </figure>}
-
-                        <h1 className={style.recipe__title}>{oneRecipe.titleRecipe}</h1>
 
                         <p className={style.recipe__text}>{oneRecipe.id.split(' ')[0]}</p>
 

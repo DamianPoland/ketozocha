@@ -34,13 +34,14 @@
 }
 
 .recipe__title {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    line-height: 2rem;
     padding: 0 0 2rem 0;
     font-family: 'Caveat', 'cursive';
     font-weight: bold;
     color: rgb(var(--accentDark));
-    font-size: 2.5rem;
 }
+
 .recipe__text {
     font-size: 1rem;
     padding: 0 0 2rem 0;
@@ -78,7 +79,11 @@
 }
 
 
-@media (min-width: 500px) {
+@media (min-width: 600px) {
 
+    .recipe__title {
+        font-size: 3rem;
+        line-height: 3rem;
+    }
 
 }

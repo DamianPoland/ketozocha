@@ -33,13 +33,13 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
     // id
     const [id, setId] = useState(idGenerator())
 
+
     // CATEGORY ----------------------------------------------------------------------------------------------------
 
     const [categoryRecipe, setCategoryRecipe] = useState(categoryRecipeArray.map(i => ({ name: i, isChecked: false })))
 
     const setCategoryRecipeHandler = e => {
         setCategoryRecipe(prevState => {
-
             const currentArray = [...prevState]
             const currentIndex = currentArray.findIndex(i => i.name === e.target.value)
             currentArray[currentIndex] = { ...currentArray[currentIndex], isChecked: e.target.checked }
@@ -50,84 +50,14 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
 
     // PHOTOS----------------------------------------------------------------------------------------------------------------
 
-    const [image, setImage] = useState([null, null, null, null, null, null, null, null, null, null]) // input image value
-    const [imageURL, setImageURL] = useState([null, null, null, null, null, null, null, null, null, null]) // write URL from DB
+    const [imageURL, setImageURL] = useState([null, null, null, null]) // write URL from DB
     const [smallImageURL, setSmallImageURL] = useState("") // write URL from DB
     const [progress, setProgress] = useState(0) // progress bar
-    const [showProgress, setShowProgress] = useState([false, false, false, false, false, false, false, false, false, false]) // set progress visibility
-
-    // get photo from file/camera
-    const getPhoto = (e, index) => {
-        setImage(prevState => {
-            let helpArray = [...prevState]
-            helpArray[index] = e.target.files[0]
-            return helpArray
-        })
-    }
-    // add image 0 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[0], 0)
-        addImgToDB(image[0], -1, 0.05, 160) //index -1 is for smallImageURL
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[0]])
-
-    // add image 1 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[1], 1)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[1]])
-
-    // add image 2 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[2], 2)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[2]])
-
-    // add image 3 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[3], 3)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[3]])
-
-    // add image 4 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[4], 4)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[4]])
-
-    // add image 5 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[5], 5)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[5]])
-
-    // add image 6 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[6], 6)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[6]])
-
-    // add image 7 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[7], 7)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[7]])
-
-    // add image 8 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[8], 8)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[8]])
-
-    // add image 9 to DB and show to user
-    useEffect(() => {
-        addImgToDB(image[9], 9)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [image[9]])
+    const [showProgress, setShowProgress] = useState([false, false, false, false]) // set progress visibility
 
 
-    // add image to DB and show to user, index -1 is for smallImageURL
-    const addImgToDB = async (image, index, maxSizeMB = 0.5, maxWidthOrHeight = "1280") => {
+    // prepare Img Before Send To DB, index -1 is for smallImageURL
+    const prepareImgBeforeSendToDB = async (image, index, maxSizeMB = 1, maxWidthOrHeight = "1280") => {
 
         // if image is empty then return
         if (!image) { return }
@@ -136,6 +66,11 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
         if (image.type.split("/")[0] !== 'image') {
             setIsAlertSmallShow({ alertIcon: 'info', description: 'To nie jest zdjęcie.', animationTime: '2', borderColor: 'orange' })
             return
+        }
+
+        // if first photo make small img with index -1
+        if (index === 0) {
+            prepareImgBeforeSendToDB(image, -1, 0.05, 160) //index -1 is for smallImageURL
         }
 
         // set progress bar visibile if index !== -1 => index -1 is for smallImageURL
@@ -147,38 +82,52 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
             })
         }
 
-        // check image size, if more than 0.5MB or for smallImageURL then compress photo
-        if (image.size >= 1048576 / 2 || (index === -1)) {
-
-            // compression options
-            const options = {
-                maxSizeMB: maxSizeMB, // in MB
-                maxWidthOrHeight: maxWidthOrHeight, // in px
-                useWebWorker: true
-            }
-
-            // start compression
+        // compress image if size more than 1MB
+        if (image.size >= 1048576) {
             try {
-                image = await imageCompression(image, options)
-
+                image = await imgCompression(image, maxSizeMB, maxWidthOrHeight)
             } catch (error) {
-
-                // set progress bar invisibile
                 console.log("compression error message: ", error.message)
                 setIsAlertSmallShow({ alertIcon: 'error', description: 'Błąd. Kompresja nie powiodła się. Spróbuj ponownie później.', animationTime: '2', borderColor: 'red' })
                 setProgress(0)
-                setShowProgress(prevState => {
+                setShowProgress(prevState => { // set progress bar invisibile
                     let helpArray = [...prevState]
                     helpArray[index] = false
                     return helpArray
                 })
 
-                // return to not save in DB
+                // return => not send img to DB 
                 return
             }
         }
 
-        // send photo to DB
+        //send img to DB and show to user
+        sendPhotoToDB(image, index)
+    }
+
+
+    // img compression
+    const imgCompression = async (image, maxSizeMB, maxWidthOrHeight) => {
+
+        // compression options
+        const options = {
+            maxSizeMB: maxSizeMB, // number in MB
+            maxWidthOrHeight: maxWidthOrHeight, // string in px
+            useWebWorker: true
+        }
+
+        // start compression
+        try {
+            return await imageCompression(image, options)
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+
+    //send img to DB and show to user
+    const sendPhotoToDB = (image, index) => {
+
         const uploadTask = storage.ref(`images/${id}/${index}`).put(image)
         uploadTask.on('state_changed',
             snapshot => { setProgress(Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)) },//progress bar
@@ -186,8 +135,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
                 console.log('upload error: ', err)
                 setIsAlertSmallShow({ alertIcon: 'error', description: 'Błąd. Spróbuj ponownie później.', animationTime: '2', borderColor: 'red' })
                 setProgress(0)
-                // set progress bar invisibile
-                setShowProgress(prevState => {
+                setShowProgress(prevState => { // set progress bar invisibile
                     let helpArray = [...prevState]
                     helpArray[index] = false
                     return helpArray
@@ -245,7 +193,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
     const [links, setLinks] = useState(Array.from(Array(10)).map(i => ({ desc: '', text: '', href: '' }))) // array of objects with empty values
 
 
-    // IF AD IS EDITING ----------------------------------------------------------------------------------------------------------------
+    // IF RECIPE IS EDITING ----------------------------------------------------------------------------------------------------------------
 
 
     useEffect(() => editData && addAllDataToInputsIfAdIsEdit(editData), [editData])
@@ -259,11 +207,10 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
         setCategoryRecipe(editData.categoryRecipe)
 
         // PHOTOS
-        setImage([null, null, null, null, null, null, null, null, null, null])
         setImageURL(editData.imageURL)
         setSmallImageURL(editData.smallImageURL)
         setProgress(0)
-        setShowProgress([false, false, false, false, false, false, false, false, false, false])
+        setShowProgress([false, false, false, false])
 
         // DESCRIPTIONS
         setTitleRecipe(editData.titleRecipe)
@@ -283,7 +230,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
     // after finish form, use form for: add or edit
     const handleReadyAd = () => {
         const obj = getDataObjectWithAllInputs()
-        sendAddItemToDB(obj)
+        sendRecipeItemToDB(obj)
     }
 
     const getDataObjectWithAllInputs = () => {
@@ -302,26 +249,23 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
     }
 
 
-    const sendAddItemToDB = (obj) => {
+    const sendRecipeItemToDB = (obj) => {
         firestore.collection(mainColName).doc(id).set(obj)
             .then(() => {
                 console.log('succes')
                 setIsEditAdVisible(false)
             })
             .catch(err => console.log('err', err))
-
     }
 
 
     const cancelForm = () => {
-
-        // delete all photo when cance - if is editing then no delete photos
-        !editData && deleteImagesAndFolderFromDB()
+        !editData && deleteImagesAndFolderFromDB() // delete all photo when cancel - if is editing then no delete photos
         setIsEditAdVisible(false)
     }
 
 
-    const deleteAd = () => {
+    const deleteRecipe = () => {
         deleteImagesAndFolderFromDB()
         firestore.collection(mainColName).doc(id).delete() //delete document with id from collection
         setIsEditAdVisible(false)
@@ -344,6 +288,17 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
             .catch(error => console.log(error))
     }
 
+
+    const deleteOneImgFromDB = index => {
+        storage.refFromURL(imageURL[index]).delete()
+            .then(() => console.log(`usunięto ${index}`))
+            .catch(error => console.log("error deletion, error: ", error))
+        setImageURL(prevState => {
+            let helpArray = [...prevState]
+            helpArray[index] = null
+            return helpArray
+        })
+    }
 
 
     const setLinksHandler = (type, index, value) => {
@@ -373,9 +328,8 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
                         <p className={style.ad__itemDesc}>Kategoria:</p>
                         {categoryRecipe.map(item =>
 
-                            <label className={style.ad__itemLabelCheckBox}>
+                            <label key={item.name} className={style.ad__itemLabelCheckBox}>
                                 <input
-                                    key={item.name}
                                     className={style.ad__itemCheckBox}
                                     value={item.name}
                                     checked={item.isChecked}
@@ -392,15 +346,16 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
                 <div className={style.ad__containerPhotos}>
                     <p className={style.ad__itemContainer}>Zdjęcia:</p>
                     <div className={style.ad__containerPhotos}>
-                        {[...Array(10)].map((item, index) => {
+                        {[...Array(4)].map((item, index) => {
                             return (
                                 <div key={index} className={style.ad__itemContainer}>
+                                    <button onClick={() => deleteOneImgFromDB(index)} className={style.ad__itemCloseBtn}>X</button>
                                     <input
                                         id={`file${index}`}
                                         // className=""
                                         style={{ display: "none" }}
                                         type='file'
-                                        onChange={(e) => getPhoto(e, index)}
+                                        onChange={(e) => prepareImgBeforeSendToDB(e.target.files[0], index)}
                                         accept='image/*' //image/* = .jpg, .jpeg, .bmp, .svg, .png
                                     />
                                     <label htmlFor={`file${index}`} className={` ${style.btn} ${style.ad__itemLabel}`}><img className={style.ad__itemImage} src={imageURL[index] || Photo} alt='podgląd zdjęcia.' /> </label>
@@ -462,7 +417,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
                 </div>
                 {editData &&
                     <div className={style.btnContainer}>
-                        <button className={style.btn} onClick={deleteAd}>Usuń</button>
+                        <button className={style.btn} onClick={deleteRecipe}>Usuń</button>
                     </div>}
 
             </div>
