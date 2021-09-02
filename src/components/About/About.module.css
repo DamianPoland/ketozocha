@@ -1,5 +1,5 @@
 .background {
-    background: white;
+    background: var(--backgroundOfItem);
     color: black;
     padding: 8rem 0 4rem 0;
     min-height: calc(100vh - 3rem);
@@ -16,7 +16,6 @@
     width: 100%;
     max-width: 600px;
     margin: auto;
-
 }
 
 .about__headerImg {
@@ -26,6 +25,29 @@
 }
 
 .about__text {
+    font-size: 1rem;
+    padding: 1rem;
+}
+.about__text::first-letter {
+    font-size: 1.5rem;
+    color: rgb(var(--accentDark));
+    font-style: italic;
+
+
+}
+
+.about__text__header {
+    padding-top: 5rem;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: rgb(var(--accentDark));
+}
+
+.about__text__center {
+    text-align: center;
+}
+
+.about__text__quote {
     font-size: 1rem;
     padding: 1rem;
 }

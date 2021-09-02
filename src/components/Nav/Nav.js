@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import style from './Nav.module.css'
 
 // images
-// import logo from '../../assets/logo192.png'
+import logo from '../../assets/logo192.png'
 import logoText from '../../assets/logoText.png'
 
 
@@ -54,8 +54,8 @@ const Nav = ({ searchNav, setSearchNav, history }) => {
             <div className={style.backgroundTop}>
                 <div className={style.containerTop}>
                     <Link to='/home' className={style.header}>
+                        <img className={style.headerImgLogo} src={logo} alt='logo' />
                         <img className={`${style.headerImg} ${logoPossitionClass ? style.headerImgTransform : null}`} src={logoText} alt='logo' />
-                        {/* <p className={style.headerDesc}>KetoZocha</p> */}
                     </Link>
                     <ul onClick={() => setIsOpenMobileMenu(false)} className={`${style.list} ${styleMobileMenu}`}>
                         <li className={style.listItem}><NavLink to='/home' activeClassName={style.activeLink} className={style.listItemAnchor}>Wszystkie wpisy</NavLink></li>

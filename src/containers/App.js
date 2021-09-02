@@ -67,7 +67,7 @@ const App = () => {
       resp => {
         let helpArray = []
         resp.forEach(doc => helpArray.push(doc.data())) // get all data from DB
-        helpArray.reverse() // from newest to oldest
+        helpArray.sort((a, b) => (b.id.toString().split(' ')[1] - a.id.toString().split(' ')[1])) // sort to newest
         setDataFromDB(helpArray)
       },
       err => console.log(err.message))

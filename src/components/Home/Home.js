@@ -33,8 +33,8 @@ const Home = ({ isLogIn, dataFromDB, searchNav }) => {
             })
         }
 
-        // add/remove event listener for width more than 1500px
-        (window.innerWidth >= 1500) && window.addEventListener('mousemove', eyeball)
+        // add/remove event listener for width more than 1250px
+        (window.innerWidth >= 1250) && window.addEventListener('mousemove', eyeball)
         return () => window.removeEventListener('mousemove', eyeball)
     }, [])
 
@@ -68,14 +68,13 @@ const Home = ({ isLogIn, dataFromDB, searchNav }) => {
                     </div>}
 
                     {/* Avocado and eyes */}
-                    {(window.innerWidth >= 1500) &&
-                        <figure id='logo__img' className={style.home__avocadoFigure}>
-                            <img className={style.home__avocadoImg} src={logo512} alt="Avocado and eyes" />
-                            <div className={style.home__avocadoEyes}>
-                                <div className={`${style.home__avocadoEye} eye`}></div>
-                                <div className={`${style.home__avocadoEye} eye`}></div>
-                            </div>
-                        </figure>}
+                    <figure id='logo__img' className={style.home__avocadoFigure}>
+                        <img className={style.home__avocadoImg} src={logo512} alt="Avocado and eyes" />
+                        <div className={style.home__avocadoEyes}>
+                            <div className={`${style.home__avocadoEye} eye`}></div>
+                            <div className={`${style.home__avocadoEye} eye`}></div>
+                        </div>
+                    </figure>
 
                     {/* HEADER */}
                     <figure id='logo__img' className={style.home__headerFigure}>

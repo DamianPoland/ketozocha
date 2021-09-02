@@ -31,6 +31,12 @@
     text-decoration: none;
 }
 
+.headerImgLogo {
+    height: 3rem;
+    width: 3rem;
+    padding: .2rem;
+}
+
 .headerImg {
     height: 3rem;
     width: 6rem;
@@ -68,16 +74,6 @@
         transform: translate(50vw, 12vw);
     }
 }
-
-.headerDesc {
-    padding-left: 10px;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: rgb(var(--accent));
-    font-family: 'Caveat', 'cursive';
-}
-
 
 .textWhite {
     color: white;
@@ -274,10 +270,6 @@
 /* media query */
 
 @media (min-width: 600px) {
-
-    .headerDesc {
-        font-size: 2rem;
-    }
 
     .desc__textEmail {
         display: initial;
