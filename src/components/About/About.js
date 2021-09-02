@@ -32,7 +32,7 @@ const About = () => {
 
             // console.log(window.pageYOffset);
             let scale = (1 - scrollPosition * 0.0015)
-            figure.style.transform = scale > 0.4 && `translateY(${scrollPosition * 0.5}px) scale(${scale > 0 ? scale : 0})`
+            figure.style.transform = scale > 0.4 && `translateY(${scrollPosition * 0.45}px) scale(${scale > 0 ? scale : 0})`
             img.style.borderRadius = `${100 - scale * 100}%`
         }
 
