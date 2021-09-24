@@ -16,10 +16,6 @@ const Home = ({ isLogIn, dataFromDB, searchNav }) => {
     const [isEditAdVisible, setIsEditAdVisible] = useState(false)
 
 
-    // scroll to top when componene render
-    useEffect(() => { window.scrollTo(0, 0) }, [])
-
-
     // avocado with eyes
     useEffect(() => {
         const eyeball = e => {

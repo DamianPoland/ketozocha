@@ -6,8 +6,6 @@ import ListItemAd from '../ListItemAd/ListItemAd'
 
 const Base = ({ dataFromDB }) => {
 
-    useEffect(() => { window.scrollTo(0, 0) }, [])
-
     return (
         <main className={style.background}>
             <section className={style.itemsContainer}>
