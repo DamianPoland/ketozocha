@@ -86,7 +86,7 @@ const Nav = ({ searchNav, setSearchNav, history }) => {
                             <p className={style.desc__contactItemText}>Email</p>
                         </a>
 
-                        <a href='https://www.facebook.com/KetoZocha-103616275370795' target='_blank' rel="noopener noreferrer" className={style.desc__contactItem}>
+                        <a href='https://www.facebook.com/zochowobezglutenovo' target='_blank' rel="noopener noreferrer" className={style.desc__contactItem}>
                             <Facebbok className={style.desc__contactItemSvg} />
                             <p className={style.desc__contactItemText}>Facebbok</p>
                         </a>
