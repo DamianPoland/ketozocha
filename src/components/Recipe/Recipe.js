@@ -102,6 +102,54 @@ const Recipe = props => {
 
                         {oneRecipe.descriptionRecipe4 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe4}</p>}
 
+                        {oneRecipe.imageURL[4] &&
+                            <figure className={style.recipe__figure} >
+                                <img className={style.recipe__img} src={oneRecipe.imageURL[4]} alt='przepis KetoZocha.pl' />
+                            </figure>}
+
+                        {oneRecipe.descriptionRecipe5 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe5}</p>}
+
+                        {oneRecipe.imageURL[5] &&
+                            <figure className={style.recipe__figure} >
+                                <img className={style.recipe__img} src={oneRecipe.imageURL[5]} alt='przepis KetoZocha.pl' />
+                            </figure>}
+
+                        {oneRecipe.descriptionRecipe6 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe6}</p>}
+
+                        {oneRecipe.imageURL[6] &&
+                            <figure className={style.recipe__figure} >
+                                <img className={style.recipe__img} src={oneRecipe.imageURL[6]} alt='przepis KetoZocha.pl' />
+                            </figure>}
+
+                        {oneRecipe.descriptionRecipe7 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe7}</p>}
+
+                        {oneRecipe.imageURL[7] &&
+                            <figure className={style.recipe__figure} >
+                                <img className={style.recipe__img} src={oneRecipe.imageURL[7]} alt='przepis KetoZocha.pl' />
+                            </figure>}
+
+                        {oneRecipe.descriptionRecipe8 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe8}</p>}
+
+                        {oneRecipe.imageURL[8] &&
+                            <figure className={style.recipe__figure} >
+                                <img className={style.recipe__img} src={oneRecipe.imageURL[8]} alt='przepis KetoZocha.pl' />
+                            </figure>}
+
+                        {oneRecipe.descriptionRecipe9 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe9}</p>}
+
+                        {oneRecipe.imageURL[9] &&
+                            <figure className={style.recipe__figure} >
+                                <img className={style.recipe__img} src={oneRecipe.imageURL[9]} alt='przepis KetoZocha.pl' />
+                            </figure>}
+
+                        {oneRecipe.descriptionRecipe10 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe10}</p>}
+
+                        {oneRecipe.imageURL[10] &&
+                            <figure className={style.recipe__figure} >
+                                <img className={style.recipe__img} src={oneRecipe.imageURL[10]} alt='przepis KetoZocha.pl' />
+                            </figure>}
+
+
                         {/* linki */}
                         {oneRecipe.links[0].href &&
                             <div>

@@ -190,6 +190,12 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
     const [descriptionRecipe2, setDescriptionRecipe2] = useState('')
     const [descriptionRecipe3, setDescriptionRecipe3] = useState('')
     const [descriptionRecipe4, setDescriptionRecipe4] = useState('')
+    const [descriptionRecipe5, setDescriptionRecipe5] = useState('')
+    const [descriptionRecipe6, setDescriptionRecipe6] = useState('')
+    const [descriptionRecipe7, setDescriptionRecipe7] = useState('')
+    const [descriptionRecipe8, setDescriptionRecipe8] = useState('')
+    const [descriptionRecipe9, setDescriptionRecipe9] = useState('')
+    const [descriptionRecipe10, setDescriptionRecipe10] = useState('')
     const [links, setLinks] = useState(Array.from(Array(10)).map(i => ({ desc: '', text: '', href: '' }))) // array of objects with empty values
 
 
@@ -218,6 +224,12 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
         setDescriptionRecipe2(editData.descriptionRecipe2)
         setDescriptionRecipe3(editData.descriptionRecipe3)
         setDescriptionRecipe4(editData.descriptionRecipe4)
+        setDescriptionRecipe5(editData.descriptionRecipe5)
+        setDescriptionRecipe6(editData.descriptionRecipe6)
+        setDescriptionRecipe7(editData.descriptionRecipe7)
+        setDescriptionRecipe8(editData.descriptionRecipe8)
+        setDescriptionRecipe9(editData.descriptionRecipe9)
+        setDescriptionRecipe10(editData.descriptionRecipe10)
 
         //LINKS
         setLinks(editData.links)
@@ -244,6 +256,12 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
             descriptionRecipe2,
             descriptionRecipe3,
             descriptionRecipe4,
+            descriptionRecipe5,
+            descriptionRecipe6,
+            descriptionRecipe7,
+            descriptionRecipe8,
+            descriptionRecipe9,
+            descriptionRecipe10,
             links,
         }
     }
@@ -346,7 +364,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
                 <div className={style.ad__containerPhotos}>
                     <p className={style.ad__itemContainer}>Zdjęcia:</p>
                     <div className={style.ad__containerPhotos}>
-                        {[...Array(4)].map((item, index) => {
+                        {[...Array(10)].map((item, index) => {
                             return (
                                 <div key={index} className={style.ad__itemContainer}>
                                     <button onClick={() => deleteOneImgFromDB(index)} className={style.ad__itemCloseBtn}>X</button>
@@ -395,6 +413,36 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
                 <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
                     <label className={style.ad__itemDesc}>Opis 4:</label>
                     <textarea onChange={event => setDescriptionRecipe4(event.target.value)} value={descriptionRecipe4} className={style.ad__itemList} type='textarea' rows='8' placeholder="Opis 4" />
+                </div>
+
+                <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
+                    <label className={style.ad__itemDesc}>Opis 5:</label>
+                    <textarea onChange={event => setDescriptionRecipe5(event.target.value)} value={descriptionRecipe5} className={style.ad__itemList} type='textarea' rows='8' placeholder="Opis 5" />
+                </div>
+
+                <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
+                    <label className={style.ad__itemDesc}>Opis 6:</label>
+                    <textarea onChange={event => setDescriptionRecipe6(event.target.value)} value={descriptionRecipe6} className={style.ad__itemList} type='textarea' rows='8' placeholder="Opis 6" />
+                </div>
+
+                <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
+                    <label className={style.ad__itemDesc}>Opis 7:</label>
+                    <textarea onChange={event => setDescriptionRecipe7(event.target.value)} value={descriptionRecipe7} className={style.ad__itemList} type='textarea' rows='8' placeholder="Opis 7" />
+                </div>
+
+                <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
+                    <label className={style.ad__itemDesc}>Opis 8:</label>
+                    <textarea onChange={event => setDescriptionRecipe8(event.target.value)} value={descriptionRecipe8} className={style.ad__itemList} type='textarea' rows='8' placeholder="Opis 8" />
+                </div>
+
+                <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
+                    <label className={style.ad__itemDesc}>Opis 9:</label>
+                    <textarea onChange={event => setDescriptionRecipe9(event.target.value)} value={descriptionRecipe9} className={style.ad__itemList} type='textarea' rows='8' placeholder="Opis 9" />
+                </div>
+
+                <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
+                    <label className={style.ad__itemDesc}>Opis 10:</label>
+                    <textarea onChange={event => setDescriptionRecipe10(event.target.value)} value={descriptionRecipe10} className={style.ad__itemList} type='textarea' rows='8' placeholder="Opis 10" />
                 </div>
 
                 {/* links */}
