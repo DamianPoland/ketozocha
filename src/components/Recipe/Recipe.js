@@ -77,7 +77,7 @@ const Recipe = props => {
                                 <img className={style.recipe__img} src={oneRecipe.imageURL[0]} alt='przepis KetoZocha.pl' />
                             </figure>}
 
-                        <p className={style.recipe__text}>{oneRecipe.id.split(' ')[0]}</p>
+                        <p className={style.recipe__text}>{oneRecipe.addDate}</p>
 
                         {oneRecipe.descriptionRecipe1 && <p className={style.recipe__text}>{oneRecipe.descriptionRecipe1}</p>}
 
@@ -151,7 +151,7 @@ const Recipe = props => {
 
 
                         {/* linki */}
-                        {oneRecipe.links[0].href &&
+                        {/* {oneRecipe.links[0].href &&
                             <div>
                                 <p className={style.recipe__textLink}>Przydatne linki:</p>
                                 {oneRecipe.links.map((i, index) =>
@@ -162,7 +162,7 @@ const Recipe = props => {
                                         </div>
                                         : null
                                 )}
-                            </div>}
+                            </div>} */}
                     </div>
                 </section>
             }

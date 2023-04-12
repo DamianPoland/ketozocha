@@ -43,7 +43,7 @@ const ListItemAd = ({ item, isLogIn, editAd }) => {
 
                 <p className={style.recipeItem__itemTitle}>{item.titleRecipe}</p>
 
-                <p className={style.recipeItem__itemDate}>{item.id.split(' ')[0]}</p>
+                <p className={style.recipeItem__itemDate}>{item.addDate}</p>
 
 
                 <div className={style.recipeItem__itemContainer}>

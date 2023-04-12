@@ -20,12 +20,9 @@ import AlertSmall from "../../UI/AlertSmall/AlertSmall"
 
 const EditAd = ({ setIsEditAdVisible, editData }) => {
 
-    useEffect(() => {
 
-    }, [])
-
-    // generator [yyyy-mm-dd date1970]
-    const idGenerator = () => `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()} ${new Date().getTime()}`
+    // generator id
+    const idGenerator = () => `${new Date().getTime()}${new Date().getMilliseconds()}`
 
     // show or hide small alert
     const [isAlertSmallShow, setIsAlertSmallShow] = useState(false)
@@ -185,6 +182,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
 
     // DESCRIPTIONS----------------------------------------------------------------------------------------------------------------
 
+    const [addDate, setAddDate] = useState('')
     const [titleRecipe, setTitleRecipe] = useState('')
     const [descriptionRecipe1, setDescriptionRecipe1] = useState('')
     const [descriptionRecipe2, setDescriptionRecipe2] = useState('')
@@ -219,20 +217,21 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
         setShowProgress([false, false, false, false])
 
         // DESCRIPTIONS
-        setTitleRecipe(editData.titleRecipe)
-        setDescriptionRecipe1(editData.descriptionRecipe1)
-        setDescriptionRecipe2(editData.descriptionRecipe2)
-        setDescriptionRecipe3(editData.descriptionRecipe3)
-        setDescriptionRecipe4(editData.descriptionRecipe4)
-        setDescriptionRecipe5(editData.descriptionRecipe5)
-        setDescriptionRecipe6(editData.descriptionRecipe6)
-        setDescriptionRecipe7(editData.descriptionRecipe7)
-        setDescriptionRecipe8(editData.descriptionRecipe8)
-        setDescriptionRecipe9(editData.descriptionRecipe9)
-        setDescriptionRecipe10(editData.descriptionRecipe10)
+        editData.addDate && setAddDate(editData.addDate)
+        editData.titleRecipe && setTitleRecipe(editData.titleRecipe)
+        editData.descriptionRecipe1 && setDescriptionRecipe1(editData.descriptionRecipe1)
+        editData.descriptionRecipe2 && setDescriptionRecipe2(editData.descriptionRecipe2)
+        editData.descriptionRecipe3 && setDescriptionRecipe3(editData.descriptionRecipe3)
+        editData.descriptionRecipe4 && setDescriptionRecipe4(editData.descriptionRecipe4)
+        editData.descriptionRecipe5 && setDescriptionRecipe5(editData.descriptionRecipe5)
+        editData.descriptionRecipe6 && setDescriptionRecipe6(editData.descriptionRecipe6)
+        editData.descriptionRecipe7 && setDescriptionRecipe7(editData.descriptionRecipe7)
+        editData.descriptionRecipe8 && setDescriptionRecipe8(editData.descriptionRecipe8)
+        editData.descriptionRecipe9 && setDescriptionRecipe9(editData.descriptionRecipe9)
+        editData.descriptionRecipe10 && setDescriptionRecipe10(editData.descriptionRecipe10)
 
         //LINKS
-        setLinks(editData.links)
+        editData.links && setLinks(editData.links)
     }
 
 
@@ -251,6 +250,7 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
             categoryRecipe,
             imageURL,
             smallImageURL,
+            addDate,
             titleRecipe,
             descriptionRecipe1,
             descriptionRecipe2,
@@ -281,7 +281,6 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
         !editData && deleteImagesAndFolderFromDB() // delete all photo when cancel - if is editing then no delete photos
         setIsEditAdVisible(false)
     }
-
 
     const deleteRecipe = () => {
         deleteImagesAndFolderFromDB()
@@ -390,6 +389,11 @@ const EditAd = ({ setIsEditAdVisible, editData }) => {
 
 
                 {/* descriptions  */}
+                <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
+                    <label className={style.ad__itemDesc}>Data ogłoszenia:</label>
+                    <input onChange={event => setAddDate(event.target.value)} value={addDate} className={style.ad__itemList} placeholder='2023-01-15' type='text' maxLength="20" />
+                </div>
+
                 <div className={`${style.ad__itemContainer} ${style.ad__itemContainerWide}`}>
                     <label className={style.ad__itemDesc}>Tytuł (max 50 znaków):</label>
                     <input onChange={event => setTitleRecipe(event.target.value)} value={titleRecipe} className={style.ad__itemList} placeholder='Tytuł' type='text' maxLength="50" />
