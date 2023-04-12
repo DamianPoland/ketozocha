@@ -81,20 +81,20 @@ const Nav = ({ searchNav, setSearchNav, history }) => {
 
                     <div className={style.desc__contact}>
                         <p className={style.desc__textEmail}>info@ketozocha.pl</p>
-                        <a href='mailto:ketozocha@gmail.com?subject=Zapytanie' className={style.desc__contactItem}>
+                        {/* <a href='mailto:ketozocha@gmail.com?subject=Zapytanie' className={style.desc__contactItem}>
                             <Email className={style.desc__contactItemSvg} />
                             <p className={style.desc__contactItemText}>Email</p>
-                        </a>
+                        </a> */}
 
-                        <a href='https://www.facebook.com/zochowobezglutenovo' target='_blank' rel="noopener noreferrer" className={style.desc__contactItem}>
+                        {/* <a href='https://www.facebook.com/zochowobezglutenovo' target='_blank' rel="noopener noreferrer" className={style.desc__contactItem}>
                             <Facebbok className={style.desc__contactItemSvg} />
                             <p className={style.desc__contactItemText}>Facebbok</p>
-                        </a>
-
+                        </a> */}
+                        {/* 
                         <a href='https://instagram.com/ketozocha?utm_medium=copy_link' target='_blank' rel="noopener noreferrer" className={style.desc__contactItem}>
                             <Instagram className={style.desc__contactItemSvg} />
                             <p className={style.desc__contactItemText}>Instagram</p>
-                        </a>
+                        </a> */}
 
                     </div>
                 </div>
